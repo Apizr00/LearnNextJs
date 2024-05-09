@@ -150,7 +150,7 @@ export async function fetchInvoicesPages(query: string) {
   }
 }
 
-export async function fetchInvoiceById(id: string) {
+export async function fetchInvoiceById(query: string) {
   noStore();
   try {
     const data = await sql<InvoiceForm>`
@@ -160,7 +160,7 @@ export async function fetchInvoiceById(id: string) {
         invoices.amount,
         invoices.status
       FROM invoices
-      WHERE invoices.id = ${id};
+      WHERE invoices.id = ${query};
     `;
 
     const invoice = data.rows.map((invoice) => ({
